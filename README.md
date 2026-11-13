@@ -1,31 +1,24 @@
-# GA‑Optimized Ensemble for Respiratory Outcome Prediction
+# ICU ventilation outcome modelling
 
-This repository contains the complete cross‑validated implementation of a heterogeneous ensemble model whose weights are optimised by a genetic algorithm (GA). The code reproduces all results reported in the manuscript, including performance at clinical cutoffs, comparison with baseline models, and visualisations (ROC, calibration, feature importance).
+Source code for research on intensive care unit respiratory outcomes using genetic-algorithm ensemble methods.
 
-## Requirements
+## Repository structure
 
-Install the required packages using:
+- `final_code.py`: original ensemble analysis implementation.
+- `preprocessing.py`: original preprocessing implementation.
+- `requirements.txt`: dependencies for the original code.
+- [`revision/`](revision/README.md): separate strict two-hour HiRID admission-landmark analysis, with source reconstruction, nested evaluation and synthetic tests.
 
-```bash
-pip install -r requirements.txt
+The revision code is a distinct analysis pathway. It does **not** establish equivalence with the original implementation or any previously reported performance estimate.
 
-## Note
-If you run the script outside Google Colab, remove the `google-colab` line from `requirements.txt` and modify the path loading section in the script (replace `drive.mount` and `os.chdir` with your local path).
-## Data
-The original dataset (0_2 merged_respiratory_modelling_final.csv) is not included due to confidentiality. Please contact the corresponding author for access, or place your own CSV with the same column structure in the working directory before running the script.
+## Clinical data and research outputs
 
-Expected columns: all numeric predictors, a binary Outcome column (Yes/No), and optionally a patientid column (will be dropped).
+Restricted patient-level inputs are **not distributed**. Obtain clinical datasets only through the relevant authorised provider and follow the applicable data-use conditions.
 
-## Usage
-Place the dataset in the same directory as the script.
+All original data, processed cohorts, run diagnostics, evaluation tables, model checkpoints and other experiment outputs belong in a separate private research workspace. The repository publishes code and documentation only.
 
-## Run:
+## Reproducing the revision
 
-bash
-python ga_ensemble_analysis.py
-All console outputs (performance tables) and plots (ROC, calibration, feature importance, bar charts) will be displayed sequentially.
+See [revision/README.md](revision/README.md) for the required HiRID input layout, dependency installation, execution order and verification scope.
 
-## Reproducibility
-Random seeds are fixed (random_state=42).
-
-All preprocessing steps (KNN imputation, scaling, SMOTE) are performed inside each CV fold to prevent data leakage.
+The available synthetic tests check selected implementation helpers. They are **not** an independently verified end-to-end reproduction using restricted clinical records. The historical composite mortality outcome also requires additional temporal validation before clinical interpretation.
